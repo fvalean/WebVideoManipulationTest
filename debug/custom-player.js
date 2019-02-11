@@ -16,6 +16,7 @@ var maxSpan = document.getElementById("maxSpan");
 
 var intervalFwd;
 var intervalRwd;
+var intervalPolling;
 
 var autoPaused = false;
 var isWinding = false;
@@ -97,10 +98,12 @@ controls.style.visibility = "visible";
 play.addEventListener("click", playPauseMedia);
 stop.addEventListener("click", stopMedia);
 media.addEventListener("ended", stopMedia);
-media.addEventListener("timeupdate", checkTime);
+//media.addEventListener("timeupdate", checkTime);
 rwd.addEventListener("click", mediaBackward);
 fwd.addEventListener("click", mediaForward);
 focusArea.addEventListener("click", continuePlay);
+
+intervalPolling = setInterval(checkTime, 100);
 
 function playMedia() {
     isWinding = false;
